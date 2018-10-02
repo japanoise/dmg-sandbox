@@ -1,5 +1,5 @@
 ; https://github.com/assemblydigest/gameboy/tree/master/part-1-make-a-gb-rom/rgbds
-SECTION "rom", HOME
+SECTION "rom", ROM0
 
 ; $0000 - $003F: RST handlers.
 ret
