@@ -1,7 +1,7 @@
 all: blank.gb
 
 %.obj: %.z80
-	rgbasm -o$@ $^
+	rgbasm -E -o$@ $^
 
 %.gb: %.obj
 	rgblink -m$*.map -n$*.sym -o$@ $^
