@@ -1,4 +1,4 @@
-all: blank.gb
+all: blank.gb graphics.gb
 
 %.obj: %.z80
 	rgbasm -E -o$@ $^
