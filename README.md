@@ -20,10 +20,16 @@ hang forever.
 
 ISSOtm wrote a hello world tutorial; this is me completing it.
 
+### sound.gb
+
+Written by myself from information in the pandocs. It boots and plays middle C
+for a few seconds, with horrid noise in the background.
+
 ## credits
 
 blank.z80 by assemblydigest. graphics.z80 originally written by ISSOtm and
-adapted by me; font.chr is a font from the same tutorial. Makefile and non-code
-by me. All licensed MIT unless otherwise stated; see the file LICENSE.
+adapted by me; font.chr is a font from the same tutorial. Makefile, sound.z80,
+and non-code by me. All licensed MIT unless otherwise stated; see the file
+LICENSE.
 
 [1]: https://github.com/japanoise/b

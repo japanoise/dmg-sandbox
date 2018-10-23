@@ -1,0 +1,64 @@
+INCLUDE "hardware.inc"
+
+SECTION "rom", ROM0[$100]
+; $0100 - $0103: Startup handler.
+nop
+jp main
+
+; $0104 - $0133: The Nintendo Logo.
+DB $CE, $ED, $66, $66, $CC, $0D, $00, $0B
+DB $03, $73, $00, $83, $00, $0C, $00, $0D
+DB $00, $08, $11, $1F, $88, $89, $00, $0E
+DB $DC, $CC, $6E, $E6, $DD, $DD, $D9, $99
+DB $BB, $BB, $67, $63, $6E, $0E, $EC, $CC
+DB $DD, $DC, $99, $9F, $BB, $B9, $33, $3E
+
+; $0134 - $013E: The title, in upper-case letters, followed by zeroes.
+DB "SOUND"
+DS 6 ; padding
+
+; Null out everything else; rgbfix will take care of it.
+REPT $150-$13E
+	db 0
+ENDR
+
+SECTION "Game Code", ROM0
+; $0150: Code!
+main:
+	; This is a learning experience for me too, so cross reference with the pandocs :)
+
+	; Master volume; enable and max out both
+	ld a, $FF
+	ld [rNR50], a
+	; Output sound 2 & 4 to both terminals
+	ld a, %10101010
+	ld [rNR51], a
+
+	; Channel 2 - Tone channel
+	; Sound length/wave pattern duty
+	; Give it the default duty and a nice long length
+	ld a, %10111111
+	ld [rNR21], a
+	; Volume envelope; set it LOUD and with a nice big sweep
+	ld a, $F7
+	ld [rNR22], a
+	; Frequency - for a nonzero frequency y, the value in these two registers is found by the formula:
+	; x = (2048 (y - 64))/y or, for us emacs users: (/ (* 2048 (- y 64)) y)
+	; 262 hz is close enough to middle c so let's use that; $060B
+	ld a, $0B
+	ld [rNR23], a
+	; This also tells us to play the sound.
+	ld a, %10000110
+	ld [rNR24], a
+
+	; Channel 4 - Noise channel
+	; Volume envelope; set it LOUD and with no sweep
+	; This means it should play forever, pissing your neighbours right off ;)
+	ld a, $F0
+	ld [rNR42], a
+	; Restart the sound
+	ld a, %10000000
+	ld [rNR44], a
+.loop:
+	nop
+	jr .loop
