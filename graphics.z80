@@ -1,4 +1,5 @@
-; https://eldred.fr/gb-asm-tutorial/hello-world.htmlINCLUDE "hardware.inc"
+; https://eldred.fr/gb-asm-tutorial/hello-world.html
+INCLUDE "hardware.inc"
 
 SECTION "rom", ROM0[$100]
 ; $0100 - $0103: Startup handler.
