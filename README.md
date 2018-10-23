@@ -16,9 +16,14 @@ need changing.
 This is possibly the simplest possible ROM. It will boot the GameBoy and then
 hang forever.
 
+### graphics.gb
+
+ISSOtm wrote a hello world tutorial; this is me completing it.
+
 ## credits
 
-blank.z80 by assemblydigest. Makefile and non-code by me. All licensed MIT
-unless otherwise stated; see the file LICENSE.
+blank.z80 by assemblydigest. graphics.z80 originally written by ISSOtm and
+adapted by me; font.chr is a font from the same tutorial. Makefile and non-code
+by me. All licensed MIT unless otherwise stated; see the file LICENSE.
 
 [1]: https://github.com/japanoise/b
